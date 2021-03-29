@@ -34,6 +34,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, DatePickerFragme
         binding?.btnSetRepeatingAlarm?.setOnClickListener(this)
         alarmReceiver = AlarmReceiver()
 
+        //Listener cancelling repeating alarm
+        binding?.btnCancelRepeatingAlarm?.setOnClickListener(this)
+
     }
 
     override fun onClick(v: View) {
@@ -65,6 +68,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, DatePickerFragme
                 val repeatTime = binding?.tvRepeatingTime?.text.toString()
                 val repeatMessage = binding?.edtRepeatingMessage?.text.toString()
                 alarmReceiver.setRepeatingAlarm(this, AlarmReceiver.TYPE_REPEATING, repeatTime, repeatMessage)
+            }
+            // Cancelling repeating alarm
+            R.id.btn_cancel_repeating_alarm -> {
+                alarmReceiver.cancelAlarm(this, AlarmReceiver.TYPE_REPEATING)
             }
         }
     }
